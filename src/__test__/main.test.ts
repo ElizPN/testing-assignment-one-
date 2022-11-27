@@ -8,6 +8,7 @@ import { Todo } from "../ts/models/Todo";
 import * as functions from "../ts/main";
 
 import * as functions2 from "../ts/functions";
+import { displayError } from "../ts/main";
 
 describe("createNewTodo", () => {
   test("should create HTML for todo", () => {
@@ -25,9 +26,27 @@ describe("createNewTodo", () => {
 describe("displayError", () => {
   test("should add class to errorContainer", () => {
     //Arrange
+    // create div with id error
+    document.body.innerHTML = `<div id="error"> </div>`;
+
     //Act
+    displayError("error happened", true);
+
     //Assert
+    // get elements
+    const divElem: HTMLElement | null = document.getElementById("error");
+    const text = divElem?.textContent;
+    console.log(text);
+
+    // check does div have same text as with we call function displayError
+    expect(text).toEqual("error happened");
+
+    // check does div have class "show"
+    expect(divElem?.classList.contains("show")).toBe(true);
   });
+
+
+
   test("should remove class from errorContainer", () => {
     //Arrange
     //Act
