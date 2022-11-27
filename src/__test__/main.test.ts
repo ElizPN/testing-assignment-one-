@@ -45,12 +45,16 @@ describe("displayError", () => {
     expect(divElem?.classList.contains("show")).toBe(true);
   });
 
-
-
   test("should remove class from errorContainer", () => {
     //Arrange
+    document.body.innerHTML = `<div id="error" class="show"> </div>`;
+
     //Act
+    displayError("error happened", false);
+
     //Assert
+    const divElem: HTMLElement | null = document.getElementById("error");
+    expect(divElem?.classList.contains("show")).toBe(false);
   });
 });
 
