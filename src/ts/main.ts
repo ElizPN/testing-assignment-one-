@@ -18,7 +18,7 @@ export function init() {
       ).value;
       console.log("Todos when creating", todos);
 
-      createNewTodo(todoText, todos);
+      exports.createNewTodo(todoText, todos);
     }
   );
 }
@@ -29,7 +29,7 @@ export function createNewTodo(todoText: string, todos: Todo[]) {
   if (result.success) {
     exports.createHtml(todos);
   } else {
-    displayError(result.error, true);
+    exports.displayError(result.error, true);
   }
 }
 
